@@ -7,8 +7,16 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.5" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.7" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\RealHomeProject.Business\RealHomeProject.Business.csproj" />
+    <ProjectReference Include="..\RealHomeProject.Core\RealHomeProject.Core.csproj" />
+    <ProjectReference Include="..\RealHomeProject.DataAccess\RealHomeProject.DataAccess.csproj" />
+    <ProjectReference Include="..\RealHomeProject.Entities\RealHomeProject.Entities.csproj" />
+    <ProjectReference Include="..\RealHomeProject.WebUI\RealHomeProject.WebUI.csproj" />
   </ItemGroup>
 
 </Project>

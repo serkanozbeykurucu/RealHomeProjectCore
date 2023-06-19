@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RealHomeProject.Business.DependencyResolvers.AutoFac
+namespace RealHomeProject.Core.Entities
 {
-    public class AutoFacBusinessModule
+    public interface IEntity
     {
     }
 }
