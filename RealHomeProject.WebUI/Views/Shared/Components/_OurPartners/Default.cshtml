@@ -1,0 +1,14 @@
+﻿@using RealHomeProject.Entities.Concrete
+@model List<OurPartner>
+<div class="content-bottom1">
+    <h3>Our Partners</h3>
+    <div class="container">
+        <ul>
+            @foreach (var item in Model)
+            {
+                <li><a href="#"><img class="img-responsive" src="~/web/@item.Image" alt=""></a></li>
+            }
+            <div class="clearfix"> </div>
+        </ul>
+    </div>
+</div>

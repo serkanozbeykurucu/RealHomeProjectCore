@@ -41,7 +41,7 @@ namespace RealHomeProject.Business.Concrete
 
         public void TUpdate(WhyChooseUs t)
         {
-            return _whyChooseUsDal.Update(t);
+           _whyChooseUsDal.Update(t);
         }
     }
 }

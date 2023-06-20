@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace RealHomeProject.DataAccess.Concrete.EntityFramework
 {
-    internal class EfBlogPostDal: EfEntityRepositoryBase<BlogPost,Context>, IBlogPostDal
+    public class EfBlogPostDal: EfEntityRepositoryBase<BlogPost,Context>, IBlogPostDal
     {
     }
 }
