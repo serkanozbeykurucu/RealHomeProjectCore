@@ -1,6 +1,7 @@
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using RealHomeProject.Business.DependencyResolvers.AutoFac;
+using RealHomeProject.Business.DependencyResolvers.Microsoft;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,8 +11,8 @@ builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory())
     {
         builder.RegisterModule(new AutoFacBusinessModule());
     });
+//builder.Services.ContainerDependencies();
 builder.Services.AddControllersWithViews();
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
