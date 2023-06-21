@@ -1,9 +1,6 @@
 ﻿using RealHomeProject.Business.Abstract;
 using RealHomeProject.Business.ValidationRules.FluentValidation;
-using RealHomeProject.Core.Business;
 using RealHomeProject.Core.CrossCuttingConcerns.Validation;
-using RealHomeProject.Core.Results.Abstract;
-using RealHomeProject.Core.Results.Concrete;
 using RealHomeProject.DataAccess.Abstract;
 using RealHomeProject.Entities.Concrete;
 using System;
