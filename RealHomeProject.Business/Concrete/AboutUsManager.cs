@@ -1,4 +1,9 @@
 ﻿using RealHomeProject.Business.Abstract;
+using RealHomeProject.Business.ValidationRules.FluentValidation;
+using RealHomeProject.Core.Business;
+using RealHomeProject.Core.CrossCuttingConcerns.Validation;
+using RealHomeProject.Core.Results.Abstract;
+using RealHomeProject.Core.Results.Concrete;
 using RealHomeProject.DataAccess.Abstract;
 using RealHomeProject.Entities.Concrete;
 using System;
@@ -21,7 +26,8 @@ namespace RealHomeProject.Business.Concrete
 
         public void TAdd(AboutUs t)
         {
-           _aboutUsDal.Insert(t);
+            ValidationTool.Validates(new AboutUsValidator(), t);
+            _aboutUsDal.Insert(t);
         }
 
         public void TDelete(AboutUs t)
@@ -31,17 +37,18 @@ namespace RealHomeProject.Business.Concrete
 
         public List<AboutUs> TGetAll(Expression<Func<AboutUs, bool>> filter = null)
         {
-           return _aboutUsDal.GetAll(filter);
+            return _aboutUsDal.GetAll(filter);
         }
 
         public AboutUs TGetById(int id)
         {
-             return _aboutUsDal.GetById(id);
+            return _aboutUsDal.GetById(id);
         }
 
         public void TUpdate(AboutUs t)
         {
-            _aboutUsDal.Update(t);  
+            ValidationTool.Validates(new AboutUsValidator(), t);
+            _aboutUsDal.Update(t);
         }
     }
 }
