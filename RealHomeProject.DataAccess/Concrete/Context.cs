@@ -14,8 +14,6 @@ namespace RealHomeProject.DataAccess.Concrete
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseLazyLoadingProxies(true).
-                ConfigureWarnings(x=> x.Ignore());
             optionsBuilder.UseSqlServer("Server = (localdb)\\MSSQLLocalDB; " +
                 "Database = RealHomeProjectDB;" +
                 " Integrated Security=True; Trust Server Certificate=True");

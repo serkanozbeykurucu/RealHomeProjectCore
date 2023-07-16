@@ -11,5 +11,6 @@ namespace RealHomeProject.DataAccess.Abstract
 {
     public interface IBlogPostDal: IEntityRepository<Blog>
     {
+        public List<Blog> GetListBlogByCategoryWithUser();
     }
 }

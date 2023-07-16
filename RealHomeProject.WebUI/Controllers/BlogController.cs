@@ -11,9 +11,9 @@ using RealHomeProject.Entities.Concrete;
 
 namespace RealHomeProject.WebUI.Controllers
 {
-    [AllowAnonymous]
+	[AllowAnonymous]
 
-    public class BlogController : Controller
+	public class BlogController : Controller
 	{
 		private readonly IBlogPostService _blogPostService;
 		public BlogController(IBlogPostService blogPostService)
@@ -23,14 +23,20 @@ namespace RealHomeProject.WebUI.Controllers
 
 		public async Task<IActionResult> Index()
 		{
-			var result = _blogPostService.TGetAll();
+			var result = _blogPostService.TGetListBlogByCategoryWithUser();
 			return View(result);
 		}
-		
+		[HttpGet]
 		public IActionResult BlogDetails(int id)
 		{
-			var result = _blogPostService.TGetByFilter(x=> x.ID == id);
+			ViewBag.id = id;
+			var result = _blogPostService.TGetByFilter(x => x.ID == id);
 			return View(result);
+		}
+		[HttpPost]
+		public IActionResult BlogDetails(Blog blog)
+        {
+            return View();
 		}
 
 	}

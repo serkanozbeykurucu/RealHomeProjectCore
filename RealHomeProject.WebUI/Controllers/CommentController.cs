@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using RealHomeProject.Business.Abstract;
 using RealHomeProject.Entities.Concrete;
 
 namespace RealHomeProject.WebUI.Controllers
 {
+	[AllowAnonymous]
 	public class CommentController : Controller
 	{
 		private readonly IBlogCommentService _blogCommentService;
@@ -26,16 +28,12 @@ namespace RealHomeProject.WebUI.Controllers
 			return PartialView();
 		}
 		[HttpPost]
-		public IActionResult CommentAdd(BlogComment blogComment)
+		public async Task<IActionResult> CommentAdd(BlogComment blogComment)
 		{
-			if (ModelState.IsValid)
-			{
-				var result = _userManager.FindByNameAsync(User.Identity.Name);
-				blogComment.AppUserId = result.Id;
-				_blogCommentService.TAdd(blogComment);
-				return RedirectToAction("Index", "Blog");
-			}
-			return View(blogComment);
+			var result = await _userManager.FindByNameAsync(User.Identity.Name);
+			blogComment.AppUserId = result.Id;
+			_blogCommentService.TAdd(blogComment);
+			return RedirectToAction("Index", "Blog");
 		}
 	}
 }

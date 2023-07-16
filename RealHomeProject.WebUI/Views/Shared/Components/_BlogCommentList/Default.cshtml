@@ -1,17 +1,23 @@
-﻿<div class="single-grid">
+﻿@using RealHomeProject.Entities.Concrete
+@model List<BlogComment>
+<div class="single-grid">
 	<h5>Our Comment</h5>
-	<div class="media">
-		<div class="media-left">
-			<a href="#">
-				<img class="media-object" src="~/web/images/av.png" alt="" />
-			</a>
+	@foreach (var item in Model)
+	{
+		<div class="media">
+			<div class="media-left">
+				<a href="#">
+					<img class="media-object" src="~/web/images/av.png" alt="" />
+				</a>
+			</div>
+			<div class="media-body">
+				<h4 class="media-heading"> @item.NameSurname</h4>
+				<p> @item.CommentText</p>
+			</div>
 		</div>
-		<div class="media-body">
-			<h4 class="media-heading">Nested media heading</h4>
-			<p> Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
-		</div>
-	</div>
-	<div class="media">
+
+	}
+@*	<div class="media">
 		<div class="media-left">
 			<a href="#">
 				<img class="media-object" src="~/web/images/av.png" alt="" />
@@ -67,5 +73,5 @@
 			<h4 class="media-heading">Nested media heading</h4>
 			<p> Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
 		</div>
-	</div>
+	</div>*@
 </div>

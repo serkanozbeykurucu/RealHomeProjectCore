@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace RealHomeProject.Business.Concrete
 {
-	public class BlogPostManager : IBlogPostService
+    public class BlogPostManager : IBlogPostService
 	{
 		private readonly IBlogPostDal _blogPostDal;
 
@@ -44,7 +44,12 @@ namespace RealHomeProject.Business.Concrete
 			return _blogPostDal.GetByFilter(filter);
 		}
 
-		public void TUpdate(Blog t)
+        public List<Blog> TGetListBlogByCategoryWithUser()
+        {
+           return _blogPostDal.GetListBlogByCategoryWithUser();
+        }
+
+        public void TUpdate(Blog t)
 		{
 			_blogPostDal.Update(t);
 		}

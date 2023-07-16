@@ -1,23 +1,25 @@
-﻿@using RealHomeProject.Entities.Concrete
-@model BlogComment
-@if (User.Identity.IsAuthenticated)
+﻿@if (User.Identity.IsAuthenticated)
 {
-	<div class="leave">
-		<h5>Leave a Comment</h5>
-		<form method="post">
-			<input type="text" placeholder="Name" required="" asp-for="NameSurname">
-			<input type="text" placeholder="Email" required="" asp-for="Email">
-			<input type="text" placeholder="Subject" required="" asp-for="Subject">
-			<textarea placeholder="Comment" required="" asp-for="CommentText"></textarea >
-			<label class="hvr-sweep-to-right">
-				<input type="submit" value="Post Comment">
-			</label>
-		</form>
-	</div>
-
+    <div class="leave">
+        <h5>Leave a Comment</h5>
+        <form method="post" asp-action="CommentAdd" asp-controller="Comment">
+            <input type="text" placeholder="Name" required="" name="NameSurname">
+            <input type="text" placeholder="Email" required="" name="Email">
+            <input type="text" placeholder="Subject" required="" name="Subject">
+            <textarea placeholder="Comment" required="" name="CommentText"></textarea>
+            <input type="hidden" class="form-control" name="BlogId" value="@ViewBag.id">
+            <label class="hvr-sweep-to-right">
+                <input type="submit" value="Post Comment">
+            </label>
+        </form>
+    </div>
 }
 else
 {
-	<p class="text-danger "> Yorum Yapmak istiyorsanız Lütfen Öncelikle <a href="/Login/SignIn/">Giriş Yapmanız</a> gerekmektedir...!</p>
+    <p class="text-danger mb-3"> Yorum Yapmak istiyorsanız Lütfen Öncelikle <a href="/Login/SignIn/">Giriş Yapmanız</a> gerekmektedir...!</p>
 }
+
+
+
+
 
