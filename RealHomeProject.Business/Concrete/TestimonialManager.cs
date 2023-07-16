@@ -29,16 +29,20 @@ namespace RealHomeProject.Business.Concrete
             _testimonialDal.Delete(t);  
         }
 
-        public List<Testimonial> TGetAll(Expression<Func<Testimonial, bool>> filter = null)
+        public List<Testimonial> TGetAll(Expression<Func<Testimonial, bool>>? filter)
         {
-           return _testimonialDal.GetAll (filter);
+            if (filter == null)
+            {
+                return _testimonialDal.GetAll();
+            }
+            return _testimonialDal.GetAllByFilter(filter);
+
         }
 
-        public Testimonial TGetById(int id)
+        public Testimonial TGetByFilter(Expression<Func<Testimonial, bool>> filter = null)
         {
-            return _testimonialDal.GetById(id);
+            throw new NotImplementedException();
         }
-
         public void TUpdate(Testimonial t)
         {
             _testimonialDal.Update(t);

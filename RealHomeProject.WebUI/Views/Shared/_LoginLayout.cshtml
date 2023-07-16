@@ -1,0 +1,21 @@
+﻿<!DOCTYPE html>
+<html>
+@await Html.PartialAsync("/Views/LoginLayoutPartial/_HeaderPartial.cshtml")
+<body>
+    <!--header-->
+    @await Html.PartialAsync("/Views/LoginLayoutPartial/_NavbarPartial.cshtml")
+
+    <!--//-->
+    @await Html.PartialAsync("/Views/LoginLayoutPartial/_BannerPartial.cshtml")
+
+    <!--//header-->
+    <!--contact-->
+    @RenderBody()
+
+    <!--//contact-->
+    <!--footer-->
+    @await Html.PartialAsync("/Views/LoginLayoutPartial/_FooterPartial.cshtml")
+
+    <!--//footer-->
+</body>
+</html>

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Castle.Components.DictionaryAdapter.Xml;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using RealHomeProject.Entities.Concrete;
 using System;
@@ -13,13 +14,16 @@ namespace RealHomeProject.DataAccess.Concrete
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server = (localdb)\\MSSQLLocalDB; Database = RealHomeProjectDB; Integrated Security=True;");
-
+            optionsBuilder.UseLazyLoadingProxies(true).
+                ConfigureWarnings(x=> x.Ignore());
+            optionsBuilder.UseSqlServer("Server = (localdb)\\MSSQLLocalDB; " +
+                "Database = RealHomeProjectDB;" +
+                " Integrated Security=True; Trust Server Certificate=True");
         }
         public DbSet<AboutUs> AboutUs { get; set; }
         public DbSet<BlogCategory> BlogCategories { get; set; }
         public DbSet<BlogComment> BlogComments { get; set; }
-        public DbSet<BlogPost> BlogPosts { get; set; }
+        public DbSet<Blog> Blogs { get; set; }
         public DbSet<CompanyService> CompanyServices { get; set; }
         public DbSet<OurPartner> OurPartner { get; set; }
         public DbSet<PopularRentHome> PopularRentHome { get; set; }
@@ -27,5 +31,6 @@ namespace RealHomeProject.DataAccess.Concrete
         public DbSet<TermAndCondition> TermAndConditions { get; set; }  
         public DbSet<Testimonial> Testimonials { get; set; }
         public DbSet<WhyChooseUs> WhyChooseUs { get; set;}
+        public DbSet<Dealer> Dealers { get; set; }  
     }
 }

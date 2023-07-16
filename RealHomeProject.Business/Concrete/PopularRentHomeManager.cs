@@ -29,16 +29,20 @@ namespace RealHomeProject.Business.Concrete
             _popularRentHomeDal.Delete(t);
         }
 
-        public List<PopularRentHome> TGetAll(Expression<Func<PopularRentHome, bool>> filter = null)
+        public List<PopularRentHome> TGetAll(Expression<Func<PopularRentHome, bool>>? filter= null)
         {
-            return _popularRentHomeDal.GetAll(filter);  
+            if (filter == null)
+            {
+                return _popularRentHomeDal.GetAll();
+            }
+            return _popularRentHomeDal.GetAllByFilter(filter);
+
         }
 
-        public PopularRentHome TGetById(int id)
+        public PopularRentHome TGetByFilter(Expression<Func<PopularRentHome, bool>> filter = null)
         {
-            return _popularRentHomeDal.GetById(id);
+            throw new NotImplementedException();
         }
-
         public void TUpdate(PopularRentHome t)
         {
             _popularRentHomeDal.Update(t);  

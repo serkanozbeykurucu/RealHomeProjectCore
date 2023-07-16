@@ -1,6 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+@await Html.PartialAsync("/Views/LayoutPartial/_SidebarPartial.cshtml")
 
 <div class="content">
     @await Component.InvokeAsync("_MostPopularRentHome")

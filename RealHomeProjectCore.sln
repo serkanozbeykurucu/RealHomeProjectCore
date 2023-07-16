@@ -3,17 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33723.286
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealHomeProject.Entities", "RealHomeProject.Entities\RealHomeProject.Entities.csproj", "{B1AB3759-4E2D-4628-93F8-5D38032ADA3F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RealHomeProject.Entities", "RealHomeProject.Entities\RealHomeProject.Entities.csproj", "{B1AB3759-4E2D-4628-93F8-5D38032ADA3F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealHomeProject.DataAccess", "RealHomeProject.DataAccess\RealHomeProject.DataAccess.csproj", "{DAC7685D-0FBB-4FFA-96AF-180686C175B6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RealHomeProject.DataAccess", "RealHomeProject.DataAccess\RealHomeProject.DataAccess.csproj", "{DAC7685D-0FBB-4FFA-96AF-180686C175B6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealHomeProject.Business", "RealHomeProject.Business\RealHomeProject.Business.csproj", "{E543FC70-B318-498D-BB2E-60EDAD73995E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RealHomeProject.Business", "RealHomeProject.Business\RealHomeProject.Business.csproj", "{E543FC70-B318-498D-BB2E-60EDAD73995E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealHomeProject.WebUI", "RealHomeProject.WebUI\RealHomeProject.WebUI.csproj", "{C2ED1FAA-C1F3-4687-B7CD-32DC3F16C37B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RealHomeProject.WebUI", "RealHomeProject.WebUI\RealHomeProject.WebUI.csproj", "{C2ED1FAA-C1F3-4687-B7CD-32DC3F16C37B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealHomeProject.WebAPI", "RealHomeProject.WebAPI\RealHomeProject.WebAPI.csproj", "{575D3B00-0E8A-415C-A304-EC02A4B7BC04}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RealHomeProject.WebAPI", "RealHomeProject.WebAPI\RealHomeProject.WebAPI.csproj", "{575D3B00-0E8A-415C-A304-EC02A4B7BC04}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealHomeProject.Core", "RealHomeProject.Core\RealHomeProject.Core.csproj", "{E239CB61-1C2D-4D7A-A86F-09AEB72188C3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RealHomeProject.Core", "RealHomeProject.Core\RealHomeProject.Core.csproj", "{E239CB61-1C2D-4D7A-A86F-09AEB72188C3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealHomeProject.Dto", "RealHomeProject.Dto\RealHomeProject.Dto.csproj", "{BABA6E5F-26E3-442A-BE23-E8C77954D764}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{E239CB61-1C2D-4D7A-A86F-09AEB72188C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E239CB61-1C2D-4D7A-A86F-09AEB72188C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E239CB61-1C2D-4D7A-A86F-09AEB72188C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BABA6E5F-26E3-442A-BE23-E8C77954D764}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BABA6E5F-26E3-442A-BE23-E8C77954D764}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BABA6E5F-26E3-442A-BE23-E8C77954D764}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BABA6E5F-26E3-442A-BE23-E8C77954D764}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

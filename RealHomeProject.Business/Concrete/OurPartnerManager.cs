@@ -29,16 +29,20 @@ namespace RealHomeProject.Business.Concrete
             _ourPartnerDal.Delete(t);
         }
 
-        public List<OurPartner> TGetAll(Expression<Func<OurPartner, bool>> filter = null)
+        public List<OurPartner> TGetAll(Expression<Func<OurPartner, bool>> filter)
         {
-            return _ourPartnerDal.GetAll(filter);
+            if (filter == null)
+            {
+                return _ourPartnerDal.GetAll();
+            }
+            return _ourPartnerDal.GetAllByFilter(filter);
+
         }
 
-        public OurPartner TGetById(int id)
+        public OurPartner TGetByFilter(Expression<Func<OurPartner, bool>> filter = null)
         {
-            return _ourPartnerDal.GetById(id);
+            throw new NotImplementedException();
         }
-
         public void TUpdate(OurPartner t)
         {
             _ourPartnerDal.Update(t);

@@ -1,0 +1,220 @@
+﻿@using RealHomeProject.Entities.Concrete
+@model IEnumerable<Blog>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!--//-->
+<div class=" banner-buying">
+    <div class=" container">
+        <h3><span>blo</span>g</h3>
+        <!---->
+        <div class="menu-right">
+            <ul class="menu">
+                <li class="item1">
+                    <a href="#"> Menu<i class="glyphicon glyphicon-menu-down"> </i> </a>
+                    <ul class="cute">
+                        <li class="subitem1"><a href="buy.html">Buy </a></li>
+                        <li class="subitem2"><a href="buy.html">Rent </a></li>
+                        <li class="subitem3"><a href="buy.html">Hostels </a></li>
+                        <li class="subitem1"><a href="buy.html">Resale </a></li>
+                        <li class="subitem2"><a href="loan.html">Home Loan</a></li>
+                        <li class="subitem3"><a href="buy.html">Apartment </a></li>
+                        <li class="subitem3"><a href="dealers.html">Dealers</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="clearfix"> </div>
+        <!--initiate accordion-->
+        <script type="text/javascript">
+            $(function () {
+                var menu_ul = $('.menu > li > ul'),
+                    menu_a = $('.menu > li > a');
+                menu_ul.hide();
+                menu_a.click(function (e) {
+                    e.preventDefault();
+                    if (!$(this).hasClass('active')) {
+                        menu_a.removeClass('active');
+                        menu_ul.filter(':visible').slideUp('normal');
+                        $(this).addClass('active').next().stop(true, true).slideDown('normal');
+                    } else {
+                        $(this).removeClass('active');
+                        $(this).next().stop(true, true).slideUp('normal');
+                    }
+                });
+
+            });
+        </script>
+
+    </div>
+</div>
+<!--//header-->
+<!--blog-->
+<div class="blog">
+    <div class="container">
+        <h3>Blog</h3>
+        <div class="col-md-9 blog-head">
+            @foreach (var item in Model)
+            {
+                <div class="blog-top">
+                    <a href="/Blog/BlogDetails/@item.ID">
+                        <img src="~/web/@item.BlogImageURL" class="img-responsive" alt="" />
+                    </a>
+                    <h4>
+                        <a href="/Blog/BlogDetails/@item.ID">@item.Title</a>
+                    </h4>
+                    <h5>
+                        Posted By :@item.AppUserId
+                        <a href="/Blog/BlogDetails/@item.ID">  @item.BlogCategoriesID </a> | Date : @item.PostDate
+                    </h5>
+                    <p> @item.Description </p>
+                    <a class="hvr-sweep-to-right more" href="/Blog/BlogDetails/@item.ID">Read More</a>
+                    <div class="links">
+                        <ul class="blog-links">
+                            <li>
+                                <a href="#">
+                                    <i class="blog_circle">24 </i><span>Comments</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="glyphicon glyphicon-heart"> </i><span>Like</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            }
+        </div>
+        <div class="col-md-3 blog-sidebar">
+            @await Component.InvokeAsync("_CategoryList")
+            <div class="blog-list">
+                <h4>Archive</h4>
+                <ul>
+                    <li><a href="#"><i class="glyphicon glyphicon-arrow-right"> </i>July (15)</a></li>
+                    <li><a href="#"><i class="glyphicon glyphicon-arrow-right"> </i>Oct (20)</a></li>
+                    <li><a href="#"><i class="glyphicon glyphicon-arrow-right"> </i>November (8)</a></li>
+                    <li><a href="#"><i class="glyphicon glyphicon-arrow-right"> </i>December (25)</a></li>
+                    <li><a href="#"><i class="glyphicon glyphicon-arrow-right"> </i>August (9)</a></li>
+                    <li><a href="#"><i class="glyphicon glyphicon-arrow-right"> </i>July (15)</a></li>
+                    <li><a href="#"><i class="glyphicon glyphicon-arrow-right"> </i>Oct (20)</a></li>
+                    <li><a href="#"><i class="glyphicon glyphicon-arrow-right"> </i>November (8)</a></li>
+                    <li><a href="#"><i class="glyphicon glyphicon-arrow-right"> </i>December (25)</a></li>
+                    <li><a href="#"><i class="glyphicon glyphicon-arrow-right"> </i>August (9)</a></li>
+                </ul>
+            </div>
+            <div class="blog-list1">
+                <h4>Popular Posts</h4>
+                <div class="blog-list-top">
+                    <div class="blog-img">
+                        <a href="blog_single.html">
+                            <img class="img-responsive" src="~/web/images/bo.jpg" alt="">
+                        </a>
+                    </div>
+                    <div class="blog-text">
+                        <p><a href="#">Lorem ipsum dolor sit amet, consectetuer</a></p>
+                        <span class="link">
+                            Feb 14, 2015
+                            <a href="#">
+                                <i class="glyphicon glyphicon-heart"> </i>
+                            </a>16
+                        </span>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+                <div class="blog-list-top">
+                    <div class="blog-img">
+                        <a href="blog_single.html"><img class="img-responsive" src="~/web/images/bo1.jpg" alt=""></a>
+                    </div>
+                    <div class="blog-text">
+                        <p><a href="blog_single.html">Lorem ipsum dolor sit amet, consectetuer</a></p>
+                        <span class="link">
+                            Feb 14, 2015
+                            <a href="#">
+                                <i class="glyphicon glyphicon-heart"> </i>
+                            </a>16
+                        </span>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+                <div class="blog-list-top">
+                    <div class="blog-img">
+                        <a href="blog_single.html"><img class="img-responsive" src="~/web/images/bo2.jpg" alt=""></a>
+                    </div>
+                    <div class="blog-text">
+                        <p><a href="blog_single.html">Lorem ipsum dolor sit amet, consectetuer</a></p>
+                        <span class="link">
+                            Feb 14, 2015
+                            <a href="#">
+                                <i class="glyphicon glyphicon-heart"> </i>
+                            </a>16
+                        </span>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+                <div class="blog-list-top">
+                    <div class="blog-img">
+                        <a href="blog_single.html"><img class="img-responsive" src="~/web/images/bo3.jpg" alt=""></a>
+                    </div>
+                    <div class="blog-text">
+                        <p><a href="blog_single.html">Lorem ipsum dolor sit amet, consectetuer</a></p>
+                        <span class="link">
+                            Dec 14, 2013
+                            <a href="#">
+                                <i class="glyphicon glyphicon-heart"> </i>
+                            </a>16
+                        </span>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+                <div class="blog-list-top">
+                    <div class="blog-img">
+                        <a href="blog_single.html"><img class="img-responsive" src="~/web/images/bo4.jpg" alt=""></a>
+                    </div>
+                    <div class="blog-text">
+                        <p><a href="blog_single.html">Lorem ipsum dolor sit amet, consectetuer</a></p>
+                        <span class="link">
+                            Dec 14, 2013
+                            <a href="#">
+                                <i class="glyphicon glyphicon-heart"> </i>
+                            </a>16
+                        </span>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+            </div>
+            <div class="blog-list2">
+                <h4>Tags</h4>
+                <ul>
+                    <li><a href="#">Web Design</a></li>
+                    <li><a href="#">Html5</a></li>
+                    <li><a href="#">Wordpress</a></li>
+                    <li><a href="#">Logo</a></li>
+                    <li><a href="#">Web Design</a></li>
+                    <li><a href="#">Web Design</a></li>
+                    <li><a href="#">Wordpress</a></li>
+                    <li><a href="#">Web Design</a></li>
+                    <li><a href="#">Html5</a></li>
+                    <li><a href="#">Wordpress</a></li>
+                    <li><a href="#">Logo</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="clearfix"> </div>
+        <nav>
+            <ul class="pagination">
+                <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
+                <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+                <li><a href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
+            </ul>
+        </nav>
+    </div>
+</div>
+<!--//blog-->

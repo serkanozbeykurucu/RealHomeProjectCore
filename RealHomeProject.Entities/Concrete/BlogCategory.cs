@@ -11,6 +11,6 @@ namespace RealHomeProject.Entities.Concrete
         public int ID { get; set; }
         public string CategoryName { get; set; }
         public bool Status { get; set; }
-        public List<BlogPost> BlogPost { get; set; }  
+        public virtual ICollection<Blog> Blogs { get; set; }  
     }
 }

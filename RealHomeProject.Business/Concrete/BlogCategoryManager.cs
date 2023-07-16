@@ -29,14 +29,19 @@ namespace RealHomeProject.Business.Concrete
             _blogCategoryDal.Delete(t);
         }
 
-        public List<BlogCategory> TGetAll(Expression<Func<BlogCategory, bool>> filter = null)
+        public List<BlogCategory> TGetAll(Expression<Func<BlogCategory, bool>>? filter)
         {
-            return _blogCategoryDal.GetAll(filter); 
+            if (filter == null)
+            {
+                return _blogCategoryDal.GetAll();
+            }
+            return _blogCategoryDal.GetAllByFilter(filter);
+
         }
 
-        public BlogCategory TGetById(int id)
+        public BlogCategory TGetByFilter(Expression<Func<BlogCategory, bool>> filter = null)
         {
-            return _blogCategoryDal.GetById(id);    
+            return _blogCategoryDal.GetByFilter(filter);
         }
 
         public void TUpdate(BlogCategory t)

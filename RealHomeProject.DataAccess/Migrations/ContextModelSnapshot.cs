@@ -17,7 +17,10 @@ namespace RealHomeProject.DataAccess.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.7")
+                .HasAnnotation("ProductVersion", "7.0.8")
+                .HasAnnotation("Proxies:ChangeTracking", false)
+                .HasAnnotation("Proxies:CheckEquality", false)
+                .HasAnnotation("Proxies:LazyLoading", true)
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -255,6 +258,44 @@ namespace RealHomeProject.DataAccess.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
+            modelBuilder.Entity("RealHomeProject.Entities.Concrete.Blog", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+
+                    b.Property<int>("AppUserId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("BlogCategoriesID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("BlogImageURL")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("PostDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("AppUserId");
+
+                    b.HasIndex("BlogCategoriesID");
+
+                    b.ToTable("Blogs");
+                });
+
             modelBuilder.Entity("RealHomeProject.Entities.Concrete.BlogCategory", b =>
                 {
                     b.Property<int>("ID")
@@ -283,11 +324,10 @@ namespace RealHomeProject.DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
 
-                    b.Property<string>("BlogPostID")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("AppUserId")
+                        .HasColumnType("int");
 
-                    b.Property<int>("BlogPostID1")
+                    b.Property<int>("BlogId")
                         .HasColumnType("int");
 
                     b.Property<string>("CommentText")
@@ -311,49 +351,9 @@ namespace RealHomeProject.DataAccess.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("BlogPostID1");
+                    b.HasIndex("BlogId");
 
                     b.ToTable("BlogComments");
-                });
-
-            modelBuilder.Entity("RealHomeProject.Entities.Concrete.BlogPost", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
-
-                    b.Property<int>("BlogCategoryID")
-                        .HasColumnType("int");
-
-                    b.Property<string>("BlogImageURL")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("CategoryID")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("PostDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserID")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("BlogCategoryID");
-
-                    b.ToTable("BlogPosts");
                 });
 
             modelBuilder.Entity("RealHomeProject.Entities.Concrete.CompanyService", b =>
@@ -382,6 +382,30 @@ namespace RealHomeProject.DataAccess.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("CompanyServices");
+                });
+
+            modelBuilder.Entity("RealHomeProject.Entities.Concrete.Dealer", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Status")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Dealers");
                 });
 
             modelBuilder.Entity("RealHomeProject.Entities.Concrete.OurPartner", b =>
@@ -602,36 +626,49 @@ namespace RealHomeProject.DataAccess.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("RealHomeProject.Entities.Concrete.BlogComment", b =>
+            modelBuilder.Entity("RealHomeProject.Entities.Concrete.Blog", b =>
                 {
-                    b.HasOne("RealHomeProject.Entities.Concrete.BlogPost", "BlogPost")
-                        .WithMany("BlogComments")
-                        .HasForeignKey("BlogPostID1")
+                    b.HasOne("RealHomeProject.Entities.Concrete.AppUser", "AppUser")
+                        .WithMany("Blogs")
+                        .HasForeignKey("AppUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("BlogPost");
+                    b.HasOne("RealHomeProject.Entities.Concrete.BlogCategory", "BlogCategories")
+                        .WithMany("Blogs")
+                        .HasForeignKey("BlogCategoriesID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AppUser");
+
+                    b.Navigation("BlogCategories");
                 });
 
-            modelBuilder.Entity("RealHomeProject.Entities.Concrete.BlogPost", b =>
+            modelBuilder.Entity("RealHomeProject.Entities.Concrete.BlogComment", b =>
                 {
-                    b.HasOne("RealHomeProject.Entities.Concrete.BlogCategory", "BlogCategory")
-                        .WithMany("BlogPost")
-                        .HasForeignKey("BlogCategoryID")
+                    b.HasOne("RealHomeProject.Entities.Concrete.Blog", "Blogs")
+                        .WithMany("BlogComment")
+                        .HasForeignKey("BlogId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("BlogCategory");
+                    b.Navigation("Blogs");
+                });
+
+            modelBuilder.Entity("RealHomeProject.Entities.Concrete.AppUser", b =>
+                {
+                    b.Navigation("Blogs");
+                });
+
+            modelBuilder.Entity("RealHomeProject.Entities.Concrete.Blog", b =>
+                {
+                    b.Navigation("BlogComment");
                 });
 
             modelBuilder.Entity("RealHomeProject.Entities.Concrete.BlogCategory", b =>
                 {
-                    b.Navigation("BlogPost");
-                });
-
-            modelBuilder.Entity("RealHomeProject.Entities.Concrete.BlogPost", b =>
-                {
-                    b.Navigation("BlogComments");
+                    b.Navigation("Blogs");
                 });
 #pragma warning restore 612, 618
         }

@@ -17,9 +17,9 @@ namespace RealHomeProject.DataAccess.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Title = table.Column<int>(type: "int", nullable: false),
-                    Description = table.Column<int>(type: "int", nullable: false),
-                    ImageURL = table.Column<int>(type: "int", nullable: false),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ImageURL = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Status = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -97,6 +97,21 @@ namespace RealHomeProject.DataAccess.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_CompanyServices", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Dealers",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Status = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Dealers", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -302,7 +317,7 @@ namespace RealHomeProject.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "BlogPosts",
+                name: "Blogs",
                 columns: table => new
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
@@ -311,16 +326,21 @@ namespace RealHomeProject.DataAccess.Migrations
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     BlogImageURL = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PostDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    UserID = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CategoryID = table.Column<int>(type: "int", nullable: false),
-                    BlogCategoryID = table.Column<int>(type: "int", nullable: false)
+                    AppUserId = table.Column<int>(type: "int", nullable: false),
+                    BlogCategoriesID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_BlogPosts", x => x.ID);
+                    table.PrimaryKey("PK_Blogs", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_BlogPosts_BlogCategories_BlogCategoryID",
-                        column: x => x.BlogCategoryID,
+                        name: "FK_Blogs_AspNetUsers_AppUserId",
+                        column: x => x.AppUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Blogs_BlogCategories_BlogCategoriesID",
+                        column: x => x.BlogCategoriesID,
                         principalTable: "BlogCategories",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
@@ -332,21 +352,21 @@ namespace RealHomeProject.DataAccess.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    AppUserId = table.Column<int>(type: "int", nullable: false),
                     NameSurname = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Subject = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CommentText = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    BlogPostID = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    BlogPostID1 = table.Column<int>(type: "int", nullable: false),
+                    BlogId = table.Column<int>(type: "int", nullable: false),
                     Status = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_BlogComments", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_BlogComments_BlogPosts_BlogPostID1",
-                        column: x => x.BlogPostID1,
-                        principalTable: "BlogPosts",
+                        name: "FK_BlogComments_Blogs_BlogId",
+                        column: x => x.BlogId,
+                        principalTable: "Blogs",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -391,14 +411,19 @@ namespace RealHomeProject.DataAccess.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_BlogComments_BlogPostID1",
+                name: "IX_BlogComments_BlogId",
                 table: "BlogComments",
-                column: "BlogPostID1");
+                column: "BlogId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_BlogPosts_BlogCategoryID",
-                table: "BlogPosts",
-                column: "BlogCategoryID");
+                name: "IX_Blogs_AppUserId",
+                table: "Blogs",
+                column: "AppUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Blogs_BlogCategoriesID",
+                table: "Blogs",
+                column: "BlogCategoriesID");
         }
 
         /// <inheritdoc />
@@ -429,6 +454,9 @@ namespace RealHomeProject.DataAccess.Migrations
                 name: "CompanyServices");
 
             migrationBuilder.DropTable(
+                name: "Dealers");
+
+            migrationBuilder.DropTable(
                 name: "OurPartner");
 
             migrationBuilder.DropTable(
@@ -450,10 +478,10 @@ namespace RealHomeProject.DataAccess.Migrations
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "AspNetUsers");
+                name: "Blogs");
 
             migrationBuilder.DropTable(
-                name: "BlogPosts");
+                name: "AspNetUsers");
 
             migrationBuilder.DropTable(
                 name: "BlogCategories");

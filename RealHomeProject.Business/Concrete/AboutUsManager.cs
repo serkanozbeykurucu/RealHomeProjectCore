@@ -32,14 +32,15 @@ namespace RealHomeProject.Business.Concrete
             _aboutUsDal.Delete(t);
         }
 
-        public List<AboutUs> TGetAll(Expression<Func<AboutUs, bool>> filter = null)
+
+        public List<AboutUs> TGetAll(Expression<Func<AboutUs, bool>>? filter)
         {
-            return _aboutUsDal.GetAll(filter);
+            return filter == null ? _aboutUsDal.GetAll() : _aboutUsDal.GetAllByFilter(filter);
         }
 
-        public AboutUs TGetById(int id)
+        public AboutUs TGetByFilter(Expression<Func<AboutUs, bool>> filter = null)
         {
-            return _aboutUsDal.GetById(id);
+            return _aboutUsDal.GetByFilter(filter);
         }
 
         public void TUpdate(AboutUs t)

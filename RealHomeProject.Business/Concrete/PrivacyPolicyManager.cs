@@ -29,16 +29,20 @@ namespace RealHomeProject.Business.Concrete
            _privacyPolicyDal.Delete(t);
         }
 
-        public List<PrivacyPolicy> TGetAll(Expression<Func<PrivacyPolicy, bool>> filter = null)
+        public List<PrivacyPolicy> TGetAll(Expression<Func<PrivacyPolicy, bool>>? filter)
         {
-            return _privacyPolicyDal.GetAll(filter);
+            if (filter == null)
+            {
+                return _privacyPolicyDal.GetAll();
+            }
+            return _privacyPolicyDal.GetAllByFilter(filter);
+
         }
 
-        public PrivacyPolicy TGetById(int id)
+        public PrivacyPolicy TGetByFilter(Expression<Func<PrivacyPolicy, bool>> filter = null)
         {
-            return _privacyPolicyDal.GetById(id); 
+            return _privacyPolicyDal.GetByFilter(filter);
         }
-
         public void TUpdate(PrivacyPolicy t)
         {
             _privacyPolicyDal.Update(t);

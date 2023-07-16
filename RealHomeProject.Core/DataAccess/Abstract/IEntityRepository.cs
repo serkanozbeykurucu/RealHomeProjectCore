@@ -14,6 +14,8 @@ namespace RealHomeProject.Core.DataAccess.Abstract
         public void Update(T t);
         public void Delete(T t);
         public T GetById(int id);
-        public List<T> GetAll(Expression<Func<T, bool>> filter = null);
+        public T GetByFilter(Expression<Func<T, bool>> filter = null);
+        public List<T> GetAll();
+        public List<T> GetAllByFilter(Expression<Func<T, bool>>? filter = null);
     }    
 }

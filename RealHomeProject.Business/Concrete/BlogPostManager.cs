@@ -10,38 +10,43 @@ using System.Threading.Tasks;
 
 namespace RealHomeProject.Business.Concrete
 {
-    public class BlogPostManager: IBlogPostService
-    {
-        private readonly IBlogPostDal _blogPostDal;
+	public class BlogPostManager : IBlogPostService
+	{
+		private readonly IBlogPostDal _blogPostDal;
 
-        public BlogPostManager(IBlogPostDal blogPostDal)
-        {
-            _blogPostDal = blogPostDal;
-        }
+		public BlogPostManager(IBlogPostDal blogPostDal)
+		{
+			_blogPostDal = blogPostDal;
+		}
 
-        public void TAdd(BlogPost t)
-        {
-            _blogPostDal.Insert(t);
-        }
+		public void TAdd(Blog t)
+		{
+			_blogPostDal.Insert(t);
+		}
 
-        public void TDelete(BlogPost t)
-        {
-            _blogPostDal.Delete(t);
-        }
+		public void TDelete(Blog t)
+		{
+			_blogPostDal.Delete(t);
+		}
 
-        public List<BlogPost> TGetAll(Expression<Func<BlogPost, bool>> filter = null)
-        {
-            return _blogPostDal.GetAll(filter);
-        }
+		public List<Blog> TGetAll(Expression<Func<Blog, bool>>? filter)
+		{
+			if (filter == null)
+			{
+				return _blogPostDal.GetAll();
+			}
+			return _blogPostDal.GetAllByFilter(filter);
 
-        public BlogPost TGetById(int id)
-        {
-            return _blogPostDal.GetById(id);
-        }
+		}
 
-        public void TUpdate(BlogPost t)
-        {
-            _blogPostDal.Update(t);
-        }
-    }
+		public Blog TGetByFilter(Expression<Func<Blog, bool>> filter = null)
+		{
+			return _blogPostDal.GetByFilter(filter);
+		}
+
+		public void TUpdate(Blog t)
+		{
+			_blogPostDal.Update(t);
+		}
+	}
 }

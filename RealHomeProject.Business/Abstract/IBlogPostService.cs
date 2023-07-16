@@ -2,7 +2,7 @@
 
 namespace RealHomeProject.Business.Abstract
 {
-    public interface IBlogPostService: IGenericRepository<BlogPost>
+    public interface IBlogPostService: IGenericRepository<Blog>
     {
     }
 }

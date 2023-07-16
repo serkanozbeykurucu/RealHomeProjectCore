@@ -24,11 +24,28 @@ namespace RealHomeProject.Core.DataAccess.Concrete
             }
         }
 
-        public List<TEntity> GetAll(Expression<Func<TEntity, bool>> filter = null)
+        public List<TEntity> GetAll()
         {
             using (var c = new TContext())
             {
                 return c.Set<TEntity>().ToList();
+            }
+        }
+
+        public List<TEntity> GetAllByFilter(Expression<Func<TEntity, bool>>? filter = null)
+        {
+            using (var c = new TContext())
+            {
+                return c.Set<TEntity>().Where(filter).ToList();
+            };
+        }
+
+        public TEntity GetByFilter(Expression<Func<TEntity, bool>> filter = null)
+        {
+            using (var c = new TContext())
+            {
+                return c.Set<TEntity>()
+                        .Where(filter).FirstOrDefault();
             }
         }
 
@@ -39,6 +56,8 @@ namespace RealHomeProject.Core.DataAccess.Concrete
                 return c.Set<TEntity>().Find(id);
             }
         }
+
+        
 
         public void Insert(TEntity t)
         {

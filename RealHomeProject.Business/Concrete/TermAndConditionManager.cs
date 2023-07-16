@@ -29,16 +29,19 @@ namespace RealHomeProject.Business.Concrete
             _termAndConditionDal.Delete(t);
         }
 
-        public List<TermAndCondition> TGetAll(Expression<Func<TermAndCondition, bool>> filter = null)
+        public List<TermAndCondition> TGetAll(Expression<Func<TermAndCondition, bool>>? filter)
         {
-           return _termAndConditionDal.GetAll(filter);
+            if (filter == null)
+            {
+                return _termAndConditionDal.GetAll();
+            }
+            return _termAndConditionDal.GetAllByFilter(filter);
         }
 
-        public TermAndCondition TGetById(int id)
+        public TermAndCondition TGetByFilter(Expression<Func<TermAndCondition, bool>> filter = null)
         {
-            return _termAndConditionDal.GetById(id);
+            return _termAndConditionDal.GetByFilter(filter);
         }
-
         public void TUpdate(TermAndCondition t)
         {
             _termAndConditionDal.Update(t);

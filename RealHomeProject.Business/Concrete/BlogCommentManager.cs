@@ -26,17 +26,22 @@ namespace RealHomeProject.Business.Concrete
 
         public void TDelete(BlogComment t)
         {
-            _blogCommentDal.Delete(t);  
+            _blogCommentDal.Delete(t);
         }
 
-        public List<BlogComment> TGetAll(Expression<Func<BlogComment, bool>> filter = null)
+        public List<BlogComment> TGetAll(Expression<Func<BlogComment, bool>>? filter)
         {
-            return _blogCommentDal.GetAll(filter);
+            if (filter == null)
+            {
+                return _blogCommentDal.GetAll();
+            }
+            return _blogCommentDal.GetAllByFilter(filter);
+
         }
 
-        public BlogComment TGetById(int id)
+        public BlogComment TGetByFilter(Expression<Func<BlogComment, bool>> filter = null)
         {
-            return _blogCommentDal.GetById(id);
+            return _blogCommentDal.GetByFilter(filter);
         }
 
         public void TUpdate(BlogComment t)

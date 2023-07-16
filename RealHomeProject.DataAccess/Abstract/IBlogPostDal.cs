@@ -1,4 +1,5 @@
-﻿using RealHomeProject.Core.DataAccess.Abstract;
+﻿using Microsoft.EntityFrameworkCore.Query;
+using RealHomeProject.Core.DataAccess.Abstract;
 using RealHomeProject.Entities.Concrete;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace RealHomeProject.DataAccess.Abstract
 {
-    public interface IBlogPostDal: IEntityRepository<BlogPost>
+    public interface IBlogPostDal: IEntityRepository<Blog>
     {
     }
 }

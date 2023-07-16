@@ -1,0 +1,30 @@
+﻿@using RealHomeProject.Entities.Concrete
+@model List<WhyChooseUs>
+
+<div class="choose-us">
+    <div class="container">
+        <h3>why choose us</h3>
+        <div class="us-choose">
+            @foreach (var item in Model)
+            {
+                <div class="col-md-6 why-choose">
+                    <div class="  ser-grid ">
+                        @Html.Raw(@item.ImageURL)
+                    </div>
+                    <div class="ser-top beautiful">
+                        <h5>
+                            @item.Title
+                        </h5>
+                        <label>@item.SubTitle</label>
+                        <p>@item.Description</p>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+
+            }
+            <div class="clearfix"> </div>
+        </div>
+
+
+    </div>
+</div>

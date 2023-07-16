@@ -47,6 +47,10 @@ namespace RealHomeProject.Business.DependencyResolvers.AutoFac
 
             builder.RegisterType<WhyChooseUsManager>().As<IWhyChooseUsService>().SingleInstance();
             builder.RegisterType<EfWhyChooseUsDal>().As<IWhyChooseUsDal>().SingleInstance();
+
+
+            builder.RegisterType<DealerManager>().As<IDealerService>().SingleInstance();
+            builder.RegisterType<EfDealerDal>().As<IDealerDal>().SingleInstance();
         }
     }
 }

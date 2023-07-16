@@ -1,0 +1,21 @@
+﻿@using RealHomeProject.Entities.Concrete
+@model List<BlogCategory>
+
+<div class="blog-list">
+    <h4>Categories</h4>
+    <ul>
+        @foreach (var item in Model)
+        {
+            <li>
+                <a href="#">
+                    <i class="glyphicon glyphicon-arrow-right"> </i>
+                    @item.CategoryName
+                </a>
+            </li>
+
+        }
+
+    </ul>
+
+    <div class="clearfix"> </div>
+</div>

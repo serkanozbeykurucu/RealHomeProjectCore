@@ -19,6 +19,8 @@ namespace RealHomeProject.Business.Concrete
             _whyChooseUsDal = whyChooseUsDal;
         }
 
+       
+
         public void TAdd(WhyChooseUs t)
         {
             _whyChooseUsDal.Insert(t);
@@ -29,16 +31,20 @@ namespace RealHomeProject.Business.Concrete
             _whyChooseUsDal.Delete(t);
         }
 
-        public List<WhyChooseUs> TGetAll(Expression<Func<WhyChooseUs, bool>> filter = null)
+        public List<WhyChooseUs> TGetAll(Expression<Func<WhyChooseUs, bool>>? filter)
         {
-            return _whyChooseUsDal.GetAll(filter);
+            if (filter == null)
+            {
+                return _whyChooseUsDal.GetAll();
+            }
+            return _whyChooseUsDal.GetAllByFilter(filter);
+
         }
 
-        public WhyChooseUs TGetById(int id)
+        public WhyChooseUs TGetByFilter(Expression<Func<WhyChooseUs, bool>> filter = null)
         {
-            return _whyChooseUsDal.GetById(id);
+            throw new NotImplementedException();
         }
-
         public void TUpdate(WhyChooseUs t)
         {
            _whyChooseUsDal.Update(t);

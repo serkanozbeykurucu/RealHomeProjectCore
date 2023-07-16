@@ -29,16 +29,20 @@ namespace RealHomeProject.Business.Concrete
             _companyServiceDal.Delete(t);   
         }
 
-        public List<CompanyService> TGetAll(Expression<Func<CompanyService, bool>> filter = null)
+        public List<CompanyService> TGetAll(Expression<Func<CompanyService, bool>>? filter)
         {
-            return _companyServiceDal.GetAll(filter);   
+            if (filter == null)
+            {
+                return _companyServiceDal.GetAll();
+            }
+            return _companyServiceDal.GetAllByFilter(filter);
+
         }
 
-        public CompanyService TGetById(int id)
+        public CompanyService TGetByFilter(Expression<Func<CompanyService, bool>> filter = null)
         {
-            return _companyServiceDal.GetById(id);
+            throw new NotImplementedException();
         }
-
         public void TUpdate(CompanyService t)
         {
             _companyServiceDal.Update(t);

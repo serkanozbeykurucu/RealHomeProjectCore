@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using RealHomeProject.Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,8 @@ namespace RealHomeProject.Business.Abstract
         public void TAdd(T t);
         public void TUpdate(T t);
         public void TDelete(T t);
-        public T TGetById(int id);
-        public List<T> TGetAll(Expression<Func<T, bool>> filter = null);
+        //public T TGetById(int id);
+        public List<T> TGetAll(Expression<Func<T, bool>>? filter = null);
+        public T TGetByFilter(Expression<Func<T, bool>> filter = null);
     }
 }
