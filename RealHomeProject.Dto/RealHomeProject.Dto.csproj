@@ -6,4 +6,18 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Dtos\AboutUsDTOs\" />
+    <Folder Include="Dtos\BlogCategoriesDTOs\" />
+    <Folder Include="Dtos\BlogCommentDTOs\" />
+    <Folder Include="Dtos\CompanyServiceDTOs\" />
+    <Folder Include="Dtos\DealerDTOs\" />
+    <Folder Include="Dtos\WhyChooseUsDTOs\" />
+    <Folder Include="Dtos\TestimonialDTOs\" />
+    <Folder Include="Dtos\TermAndConditionDTOs\" />
+    <Folder Include="Dtos\PrivacyPolicyDTOs\" />
+    <Folder Include="Dtos\PopularRentHomeDTOs\" />
+    <Folder Include="Dtos\OurPartnerDTOs\" />
+  </ItemGroup>
+
 </Project>
