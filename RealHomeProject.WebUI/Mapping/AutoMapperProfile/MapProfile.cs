@@ -8,8 +8,9 @@ namespace RealHomeProject.WebUI.Mapping.AutoMapperProfile
 	{
 		public MapProfile()
 		{
-			CreateMap<BlogListDto, Blog>().IncludeAllDerived();
 			CreateMap<Blog, BlogListDto>().IncludeAllDerived();
+            CreateMap<BlogListDto, Blog>().IncludeAllDerived();
+
         }
-	}
+    }
 }

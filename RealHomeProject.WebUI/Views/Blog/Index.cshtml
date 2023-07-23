@@ -67,7 +67,7 @@
                     </h4>
                     <h5>
                         Posted By :@item.AppUser.UserName
-                        <a href="/Blog/BlogDetails/@item.ID">  @item.BlogCategories.CategoryName </a> | Date : @(((DateTime)item.PostDate).ToShortDateString())
+                        <a href="/Blog/BlogDetails/@item.ID"> | @item.BlogCategories.CategoryName </a> | Date : @(((DateTime)item.PostDate).ToShortDateString())
                     </h5>
                     <p> @item.Description </p>
                     <a class="hvr-sweep-to-right more" href="/Blog/BlogDetails/@item.ID">Read More</a>
