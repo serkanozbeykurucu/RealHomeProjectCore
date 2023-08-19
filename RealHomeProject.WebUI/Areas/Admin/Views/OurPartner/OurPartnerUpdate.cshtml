@@ -1,0 +1,80 @@
+﻿@using RealHomeProject.Entities.Concrete
+@model OurPartner
+@{
+    ViewData["Title"] = "OurPartnerUpdate";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>OurPartnerUpdate</h1>
+<div class="app-content content">
+	<div class="content-wrapper">
+		<div class="content-wrapper-before"></div>
+		<div class="content-header row">
+			<div class="content-header-left col-md-4 col-12 mb-2">
+				<h3 class="content-header-title">Our Partner</h3>
+			</div>
+			<div class="content-header-right col-md-8 col-12">
+				<div class="breadcrumbs-top float-md-right">
+					<div class="breadcrumb-wrapper mr-1">
+						<ol class="breadcrumb">
+							<li class="breadcrumb-item">
+								<a href="/Admin/Dashboard/Index">Admin</a>
+							</li>
+							<li class="breadcrumb-item">
+								<a href="/Admin/OurPartner/Index">OurPartner</a>
+							</li>
+							<li class="breadcrumb-item active">
+								OurPartner Update
+							</li>
+						</ol>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="content-body">
+
+			<!-- Content types section start -->
+			<section id="content-types">
+				<div class="row match-height">
+					<div class="col-xl-12 col-md-12">
+						<div class="card">
+							<div class="card-content">
+								<div class="card-body">
+									<h4 class="card-title">OurPartner Add Page</h4>
+									<h6 class="card-subtitle text-muted">you can update a Our Partner from this page</h6>
+								</div>
+								<div class="card-body">
+									<form class="form" method="post">
+										<div class="form-body">
+											<div class="form-group">
+												<input type="hidden" id="donationinput1" class="form-control" placeholder="" asp-for="ID">
+											</div>
+											<div class="form-group">
+												<label for="donationinput1" class="sr-only">Title</label>
+												<input type="text" id="donationinput1" class="form-control" placeholder="Title" asp-for="Name">
+											</div>
+											<div class="form-group">
+												<label for="donationinput2" class="sr-only">Image</label>
+												<textarea id="donationinput2" rows="5" class="form-control square" asp-for="Image" placeholder="Image"></textarea>
+											</div>
+											<div class="form-group">
+												<input type="checkbox" id="switcheryColor" class="switchery" data-color="primary" data-secondary-color="primary" style="display: none;" asp-for="Status">
+												<label for="switcheryColor" class="card-title ml-1">Status</label>
+											</div>
+										</div>
+										<div class="form-actions center">
+											<button type="submit" class="btn btn-outline-primary btn-block">Submit</button>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<!-- Content types section end -->
+		</div>
+	</div>
+</div>
+
+

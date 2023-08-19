@@ -41,7 +41,7 @@ namespace RealHomeProject.Business.Concrete
 
         public CompanyService TGetByFilter(Expression<Func<CompanyService, bool>> filter = null)
         {
-            throw new NotImplementedException();
+            return _companyServiceDal.GetByFilter(filter);
         }
         public void TUpdate(CompanyService t)
         {

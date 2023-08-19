@@ -41,7 +41,7 @@ namespace RealHomeProject.Business.Concrete
 
         public OurPartner TGetByFilter(Expression<Func<OurPartner, bool>> filter = null)
         {
-            throw new NotImplementedException();
+            return _ourPartnerDal.GetByFilter(filter);
         }
         public void TUpdate(OurPartner t)
         {
